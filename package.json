@@ -1,0 +1,25 @@
+{
+  "name": "camphere",
+  "version": "1.0.0",
+  "description": "An App to find a nice place to stay.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ruscarelysc/CampHere.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ruscarelysc/CampHere/issues"
+  },
+  "homepage": "https://github.com/ruscarelysc/CampHere#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3"
+  }
+}
