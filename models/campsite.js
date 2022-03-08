@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const campSiteSchema = new Schema ({
+const CampSiteSchema = new Schema({
   title: String,
   price: Number,
   description: String,
   location: String
 });
 
-module.export = mongoose.model('Campsite', campSiteSchema);
+module.exports = mongoose.model('Campsite', CampSiteSchema);
