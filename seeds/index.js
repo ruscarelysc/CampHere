@@ -22,10 +22,13 @@ const seedDB = async () => {
   cities = City.getCitiesOfState('AU', 'VIC');
   for (let i = 0; i < 50; i++) {
     city = cities[i];
-    const random100 = Math.floor(Math.random() * 100);
+    const price = Math.floor(Math.random() * 20 + 10);
     const camp = new Campsite({
       location: `${city.name}, ${city.stateCode}`,
       title: `${sample(descriptors)} ${sample(places)}`,
+      price,
+      image: 'https://source.unsplash.com/random/900x700/?camping',
+      description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit cupiditate optio sapiente repudiandae non mollitia consectetur minima recusandae expedita accusamus tempora, provident deserunt, illum voluptatum nulla dolorem, quia adipisci. Consequatur.'
     })
     await camp.save();
   }
