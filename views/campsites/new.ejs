@@ -1,36 +1,44 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
   <h1 class="text-center">New Campsite</h1>
+
   <div class="col-6 offset-3">
-    <form action="/campsites" method="POST">
+    <form action="/campsites" method="POST" novalidate class="needs-validation">
     <div class="mb-3">
       <label class="form-label" for="title">Title</label>
-      <input class="form-control" type="text" name="campsite[title]" id="title">
-    </div>
+      <input class="form-control" type="text" name="campsite[title]" id="title" required>
+    </div> required
+
     <div class="mb-3">
       <label class="form-label" for="image">Location</label>
-      <input class="form-control" type="text" name="campsite[location]" id="location">
+      <input class="form-control" type="text" name="campsite[location]" id="location" required>
     </div>
+
     <div class="mb-3">
       <label class="form-label" for="image">Img URL</label>
-      <input class="form-control" type="text" name="campsite[image]" id="image">
+      <input class="form-control" type="text" name="campsite[image]" id="image" required>
     </div>
+
     <div class="mb-3">
       <label class="form-label" for="price">Campsite Price</label>
       <div class="input-group">
       <span class="input-group-text" id="price-label">$</span>
-      <input type="text" class="form-control" placeholder="0.00" id="price" aria-describedby="price-label" name="campsite[price]">
+      <input type="text" class="form-control" placeholder="0.00" id="price" aria-describedby="price-label" name="campsite[price]" required>
       </div>
     </div>
 
     <div class="mb-3">
       <label class="form-label" for="description">Description</label>
-      <textarea class="form-control" type="text" name="campsite[description]" id="description"></textarea>
+      <textarea class="form-control" type="text" name="campsite[description]" id="description" required></textarea>
     </div>
+
     <div class="mb-3">
       <button class="btn btn-success">Add campsites</button>
     </div>
+
   </form>
   </div>
 
 </div>
+
+
