@@ -1,22 +1,6 @@
 <% layout('layouts/boilerplate') %>
-  <h1>Edit Campsite</h1>
-  <form action="/campsites/<%= campsite._id%>?_method=PUT" method="POST">
-    <div>
-      <label for="title">Title</label>
-      <input type="text" name="campsite[title]" id="title" value="'<%= campsite.title %>">
-    </div>
-    <div>
-      <label for="location">Location</label>
-      <input type="text" name="campsite[location]" id="location" value="'<%= campsite.location %>">
-    </div>
-    <button>Update campsite</button>
-  </form>
-  <a href="/campsites/<%= campsite._id%>">Back to Campsite</a>
-
-  <div class="row">
-    <h1 class="text-center">Edit Campsite</h1>
-
-
+<div class="row">
+  <h1 class="text-center">Edit Campsite</h1>
 <div class="col-6 offset-3">
   <form action="/campsites/<%= campsite._id%>?_method=PUT" method="POST">
     <div class="mb-3">
@@ -48,8 +32,6 @@
       <button class="btn btn-info">Update campsites</button>
     </div>
   </form>
+  <a href="/campsites/<%= campsite._id%>">Back to Campsite</a>
 </div>
-
-</div>
-<a href="/campsites/<%= campsite._id%>">Back to Campsite</a>
 </div>
