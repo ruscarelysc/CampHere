@@ -6,10 +6,13 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const ExpressError = require('./utilities/ExpressError');
 const methodOverride = require('method-override');
+const passport = require('passport');
+const LocalStrategy = require('passport-local')
+const User = require('./models/user');
 
-
-const campsites = require('./routes/campsites');
-const reviews = require('./routes/reviews');
+const userRoutes = require('./routes/user');
+const campsiteRoutes = require('./routes/campsites');
+const reviewRoutes = require('./routes/reviews');
 
 
 mongoose.connect('mongodb://localhost:27017/camp-here', {
@@ -48,15 +51,29 @@ const sessionConfig = {
 app.use(session(sessionConfig));
 app.use(flash());
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use((req, res, next) => {
-  // res.locals.currentUser = req.user;
+  res.locals.currentUser = req.user;
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
 })
 
-app.use('/campsites', campsites)
-app.use('/campsites/:id/reviews', reviews)
+app.use('/', userRoutes);
+app.use('/campsites', campsiteRoutes)
+app.use('/campsites/:id/reviews', reviewRoutes)
+
+app.get('/fakeUser', async (req, res) => {
+  const user = new User({ email: 'rus@gmail.com', username: 'rus01'})
+  const newUser = await User.register(user, 'bella');
+  res.send(newUser);
+})
 
 app.get('/', (req, res) => {
   res.render('home')
