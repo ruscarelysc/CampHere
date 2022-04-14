@@ -5,25 +5,10 @@ const Campsite = require('../models/campsite');
 const Review = require('../models/review');
 const ExpressError = require('../utilities/ExpressError');
 const catchAsync = require('../utilities/catchAsync');
+const reviews = require('../controllers/reviews')
 
+router.post('/', isLoggedIn, validateReview, catchAsync(reviews.createReview));
 
-router.post('/', isLoggedIn, validateReview, catchAsync(async (req, res) => {
-  const campsite = await Campsite.findById(req.params.id);
-  const review = new Review(req.body.review);
-  review.author = req.user._id;
-  campsite.reviews.push(review);
-  await review.save();
-  await campsite.save();
-  req.flash('success', 'Created new review!')
-  res.redirect(`/campsites/${campsite._id}`);
-}));
-
-router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(async (req, res) => {
-  const { id, reviewId } = req.params;
-  await Campsite.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
-  await Review.findByIdAndDelete(reviewId);
-  req.flash('success', 'Review deleted!')
-  res.redirect(`/campsites/${id}`);
-}));
+router.delete('/:reviewId', isLoggedIn, isReviewAuthor, catchAsync(reviews.deleteReview));
 
 module.exports = router;
