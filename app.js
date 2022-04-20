@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== "production") {
+  require('dotenv').config();
+}
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -10,7 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local')
 const User = require('./models/user');
 
-const userRoutes = require('./routes/user');
+const userRoutes = require('./routes/users');
 const campsiteRoutes = require('./routes/campsites');
 const reviewRoutes = require('./routes/reviews');
 
@@ -69,11 +73,6 @@ app.use('/', userRoutes);
 app.use('/campsites', campsiteRoutes)
 app.use('/campsites/:id/reviews', reviewRoutes)
 
-app.get('/fakeUser', async (req, res) => {
-  const user = new User({ email: 'rus@gmail.com', username: 'rus01'})
-  const newUser = await User.register(user, 'bella');
-  res.send(newUser);
-})
 
 app.get('/', (req, res) => {
   res.render('home')
