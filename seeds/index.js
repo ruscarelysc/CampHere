@@ -28,6 +28,11 @@ const seedDB = async () => {
       location: `${city.name}, ${city.stateCode}`,
       title: `${sample(descriptors)} ${sample(places)}`,
       price,
+      geometry: {
+         type: 'Point',
+        //  coordinates: [144.9632, -37.8142]
+         coordinates: [`${city.longitude}`, `${city.latitude}`]
+      },
       description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reprehenderit cupiditate optio sapiente repudiandae non mollitia consectetur minima recusandae expedita accusamus tempora, provident deserunt, illum voluptatum nulla dolorem, quia adipisci. Consequatur.',
       images: [
         {
