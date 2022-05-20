@@ -41,7 +41,7 @@
     "sanitize-html": "^2.7.0"
   },
   "engines": {
-    "node": "17.x",
-    "npm": "8.X"
+    "node": "17.5.0",
+    "npm": "8.7.0"
   }
 }
