@@ -1,7 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  require('dotenv').config();
-}
-
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -32,6 +29,10 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', () => {
   console.log('Database connected');
+  const port = process.env.PORT || 3000
+  app.listen(port, () => {
+    console.log(`APP IS LITENING ON PORT ${port}!`)
+  });
 });
 
 const app = express();
@@ -155,9 +156,4 @@ app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
   if (!err.message) err.message = 'Something Went Wrong!'
   res.status(statusCode).render('error', { err })
-});
-
-const port = process.env.PORT || 3000
-app.listen(port, () => {
-  console.log(`APP IS LITENING ON PORT ${port}!`)
 });
